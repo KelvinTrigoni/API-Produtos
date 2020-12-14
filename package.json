@@ -21,7 +21,8 @@
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "express-validation": "^3.0.6",
-    "firebase-admin": "^9.4.2",
+    "firebase": "^8.2.0",
+    "guid": "0.0.12",
     "joi": "^17.3.0",
     "underscore": "^1.12.0"
   },
