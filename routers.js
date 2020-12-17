@@ -1,10 +1,14 @@
 import express from 'express';
 import { validate } from 'express-validation';
-import _ from 'underscore';
-import controllerProdutos from './controllers/produtos/produto.js'
+import controllerProdutos from './controllers/produtos/produto.js';
 import modelProd from './models/produtos.js';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
+// import * as specs from './swagger.js';
 
 const router = express.Router();
+
+router.use('/documents', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 router.get('/produtos', (req, res) => {
     controllerProdutos.produtoGet().then(response => {

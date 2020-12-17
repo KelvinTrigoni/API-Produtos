@@ -1,0 +1,134 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API que faz um CRUD no firebase (database realtime)",
+        "swagger": "2.0",
+        "title": "Produtos API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/produtos": {
+            "get": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Essa rota retorna todos os produtos.",
+                "consumes": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna todos os produtos."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Essa rota cadastra um novo produto.",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "descricao": {
+                                    "type": "string"
+                                },
+                                "nome": {
+                                    "type": "string"
+                                },
+                                "preco": {
+                                    "type": "number"
+                                },
+                                "quantidade": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cadastra um novo produto."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Essa rota altera um produto.",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "descricao": {
+                                    "type": "string"
+                                },
+                                "nome": {
+                                    "type": "string"
+                                },
+                                "preco": {
+                                    "type": "number"
+                                },
+                                "quantidade": {
+                                    "type": "number"
+                                },
+                                "id": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Altera um produto."
+                    }
+                }
+            }
+        },
+        "/produtos/:id": {
+            "get": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Essa rota retorna um produto específico.",
+                "consumes": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna um produto específico por id."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Essa rota exclui um produto específico.",
+                "consumes": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "exclui um produto específico."
+                    }
+                }
+            }
+        }
+    }
+}
