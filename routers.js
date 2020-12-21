@@ -9,13 +9,7 @@ import swaggerDocument from './swagger.json';
 
 const router = express.Router();
 
-var options = {
-    swaggerOptions: {
-        authAction: { JWT: { name: "JWT", schema: { type: "apiKey", in: "header", name: "Authorization", description: "" }, value: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IkFQSUpXVFRPS0VOIiwiaWF0IjoxNjA4NTAzNDYzfQ.XsifugCt0Bvk7arjfln6HqH2CFHktuq4alnLNy8ezpM" } }
-    }
-};
-
-router.use('/documents', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+router.use('/documents', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 router.get('/token', (req, res) => {
     controllerToken.generateToken().then(response => {
