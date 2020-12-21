@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import _ from "underscore";
 import firebaseConfig from '../../firebase-config.js';
 
 firebase.initializeApp(firebaseConfig.config());
@@ -8,11 +9,17 @@ const database = firebase.database();
 
 export default {
     produtoGet: function () {
+        let list = [];
         try {
             return new Promise((ressolve, reject) => {
                 database.ref('produtos').once('value')
                     .then(snapshot => {
-                        ressolve(snapshot.val() == null ? {} : snapshot.val());
+                        _.each(snapshot.val(), (i) => {
+                            if(i != undefined){
+                                list.push(i);
+                            }
+                        });
+                        ressolve(snapshot.val() == null ? {} : list);
                     }, error => {
                         reject(error);
                     })
