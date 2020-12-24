@@ -2,7 +2,7 @@
   "name": "api-produtos",
   "version": "1.0.0",
   "description": "Crud de produtos, NoSQL",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,12 +17,14 @@
   },
   "homepage": "https://github.com/KelvinTrigoni/API-Produtos#readme",
   "dependencies": {
+    "connect-multiparty": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "express-jwt": "^6.0.0",
     "express-validation": "^3.0.6",
     "firebase": "^8.2.0",
+    "formidable": "^1.2.2",
     "guid": "0.0.12",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",

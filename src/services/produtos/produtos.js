@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import _ from "underscore";
+import _ from 'underscore';
 import firebaseConfig from '../../firebase-config.js';
 
 firebase.initializeApp(firebaseConfig.config());
