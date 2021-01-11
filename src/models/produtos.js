@@ -11,8 +11,12 @@ export default {
                     .required(),
                 quantidade: Joi.number().integer()
                     .required(),
-                preco: Joi.number().integer()
+                preco: Joi.number()
                     .required(),
+                id: Joi.string()
+                    .allow(null)
+                    .allow('')
+                    .optional()
             }),
         }
         return ProdutoValidate;
@@ -28,8 +32,12 @@ export default {
                     .required(),
                 quantidade: Joi.number().integer()
                     .required(),
-                preco: Joi.number().integer()
+                preco: Joi.number()
                     .required(),
+                    path: Joi.string()
+                    .allow(null)
+                    .allow('')
+                    .optional()
             }),
         }
         return ProdutoValidate;

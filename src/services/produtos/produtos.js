@@ -1,11 +1,12 @@
 import firebase from 'firebase';
 import _ from 'underscore';
+
 import firebaseConfig from '../../firebase-config.js';
 
 firebase.initializeApp(firebaseConfig.config());
 
-const database = firebase.database();
 
+const database = firebase.database();
 
 export default {
     produtoGet: function () {
@@ -14,8 +15,9 @@ export default {
             return new Promise((ressolve, reject) => {
                 database.ref('produtos').once('value')
                     .then(snapshot => {
-                        _.each(snapshot.val(), (i) => {
-                            if(i != undefined){
+                        _.each(snapshot.val(), (i, ind) => {
+                            if (i != undefined) {
+                                // console.log(ind);
                                 list.push(i);
                             }
                         });
@@ -83,17 +85,22 @@ export default {
 
                 database.ref('produtos').once('value')
                     .then(snapshot => {
-                        let index = snapshot.val().map(function (e) { return e.id; }).indexOf(produto.id);
-
-                        database.ref(`produtos/${index}`).set(produto, error => {
-                            if (error) {
-                                reject(error);
-                                console.log("Failed with error: " + error)
-                            } else {
-                                ressolve({ mensagem: 'Produto alterado com sucesso.' });
-                                console.log("success")
+                        //let index = snapshot.val().map(function (e) { return e.id; }).indexOf(produto.id);
+                        _.each(snapshot.val(), (i, ind) => {
+                            if (i != undefined) {
+                                if (i.id == produto.id) {
+                                    database.ref(`produtos/${ind}`).set(produto, error => {
+                                        if (error) {
+                                            reject(error);
+                                            console.log("Failed with error: " + error)
+                                        } else {
+                                            ressolve({ mensagem: 'Produto alterado com sucesso.' });
+                                            console.log("success")
+                                        }
+                                    })
+                                }
                             }
-                        })
+                        });
                     }, error => {
                         reject(error);
                     })
@@ -107,9 +114,15 @@ export default {
             return new Promise((ressolve, reject) => {
                 database.ref('produtos').once('value')
                     .then(snapshot => {
-                        let index = snapshot.val().map(function (e) { return e.id; }).indexOf(id);
-                        database.ref(`produtos/${index}`).remove();
-                        ressolve({ mensagem: 'Produto excluido com sucesso.' });
+                        // let index = snapshot.val().map(function (e) { return e.id; }).indexOf(id);
+                        _.each(snapshot.val(), (i, ind) => {
+                            if (i != undefined) {
+                                if (i.id == id) {
+                                    database.ref(`produtos/${ind}`).remove();
+                                    ressolve({ mensagem: 'Produto excluido com sucesso.' });
+                                }
+                            }
+                        });
                     }, error => {
                         reject(error);
                     })

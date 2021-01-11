@@ -74,6 +74,5 @@ export default {
         } catch (error) {
             throw erro;
         }
-    },
-    
+    }
 }
