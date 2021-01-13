@@ -34,14 +34,13 @@ function verifyJWT(err, req, res, next) {
     }
 }
 
+
 app.use(cors(corsOptions));
 app.use(body.json());
 app.use(body.urlencoded({ extended: false }));
-//app.use(expressJwt({ secret: 'APIJWTTOKEN', algorithms: ['H256'] }).unless({ path: ['/token', '/documents'] }));
-//app.use(verifyJWT);
-
+app.use(expressJwt({ secret: 'APIJWTTOKEN', algorithms: ['H256'] }).unless({ path: ['/token', '/documents'] }));
+app.use(verifyJWT);
 app.use('/', routers);
-
 app.use(function(err, req, res, next) {
   if (err instanceof ValidationError) {
     return res.status(err.statusCode).json(err)
