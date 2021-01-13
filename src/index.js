@@ -18,7 +18,7 @@ function verifyJWT(err, req, res, next) {
     // req.headers.authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IkFQSUpXVFRPS0VOIiwiaWF0IjoxNjA4NTAzNDYzfQ.XsifugCt0Bvk7arjfln6HqH2CFHktuq4alnLNy8ezpM';
     next();
   } else
-    if (!token) {
+    if (token == 'null') {
       res.status(401).json(err);
     } else {
       jwt.verify(token, 'APIJWTTOKEN', function (err, decoded) {
